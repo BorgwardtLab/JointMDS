@@ -2,6 +2,8 @@
  
 Joint MDS is a an approach for unsupervised manifold alignment, which maps datasets from two different domains without any known correspondences between data instances across the datasets, to a common low-dimensional Euclidean space. Joint MDS integrates Multidimensional Scaling (MDS) and Wasserstein Procrustes analysis into a joint optimization problem to simultaneously generate isometric embeddings of data and learn correspondences between instances from two different datasets, while only requiring intra-dataset pairwise dissimilarities as input.
 
+![Overview figure](JointMDS.png)
+
 ## Installation
 
 The dependencies are managed by [miniconda](https://conda.io/miniconda.html)
@@ -20,14 +22,9 @@ To start with the package, run
 ```bash
 export $PYTHONPATH=$PWD
 ```
+
 ## Citation
 Please use the following to cite our work:
-
-## A short description about Joint MDS
-![Overview figure](JointMDS.png)
-
-Joint Multidimensional Scaling maps data from two domains X and X<sup>'</sup> to a common low-dimensional 
-space R<sup>d</sup> while preserving the pairwise intra-domain dissimilarities. 
 
 
 ## Usage
@@ -42,7 +39,7 @@ import numpy as np
 D1 = np.random.rand(128, 10)
 D2 = np.random.rand(64, 20) 
 
-JMDS = joint_mds(n_components=2, dissimilarity="eculidean")
+JMDS = JointMDS(n_components=2, dissimilarity="eculidean")
 Z1, Z2, P = JMDS.fit_transform(D1, D2)
 
 print(Z1.shape) # (128, 2)
@@ -85,7 +82,7 @@ python example_SNAREseq.py --components 2
 python example_mnist_usps.py --components 2
 ```
 
-#### Graph matching 
+#### Graph matching
 
 For PPI network matching, the target graph has 5%, 15% or 25% additonal noisy edges. For example, for matching 5% noise graph, run
 ```bash
