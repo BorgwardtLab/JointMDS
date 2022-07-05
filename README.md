@@ -20,19 +20,27 @@ To start with the package, run
 ```bash
 export $PYTHONPATH=$PWD
 ```
+## Citation
+Please use the following to cite our work:
+
+## A short description about Joint MDS
+![Overview figure](JointMDS.png)
+
+Joint Multidimensional Scaling maps data from two domains X and X<sup>'</sup> to a common low-dimensional 
+space R<sup>d</sup> while preserving the pairwise intra-domain dissimilarities. 
+
 
 ## Usage
 
 The usage of Joint MDS is similar to the [MDS](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.MDS.html) function in scikit-learn.
-Here is one minimal example of Joint MDS.
-
+Here is one minimal example of Joint MDS. 
 
 ```python
 from joint_mds import JointMDS
 import numpy as np
 
 D1 = np.random.rand(128, 10)
-D2 = np.random.rand(64, 20）
+D2 = np.random.rand(64, 20) 
 
 JMDS = joint_mds(n_components=2, dissimilarity="eculidean")
 Z1, Z2, P = JMDS.fit_transform(D1, D2)
@@ -46,22 +54,57 @@ print(P.shape)  # (128, 64)
 
 #### Data
 
-To get data, please run
+All our experimental scripts are in the folder `experiments`. So to start with, first run 
 
 ```bash
 cd datasets
 bash get_data.sh
 ```
 
+Then `cd ../examples`
+
+#### Joint visualization and unsupervised heterogeneous domain adaptation
+
+For sythetic datasets, run
+
+```bash
+python example_simulation.py --dataset s1 --components 2
+```
+The dataset can be either `s1`, `s2` or `s3` respectively for bifurcation, Swiss roll and circular frustum.
+
+For real-world datasets, run
+
+```bash
+# scGEM
+python example_scGEM.py --components 2
+
+# SNAREseq
+python example_SNAREseq.py --components 2
+
+# MNIST-USPS
+python example_mnist_usps.py --components 2
+```
+
+#### Graph matching 
+
+For PPI network matching, the target graph has 5%, 15% or 25% additonal noisy edges. For example, for matching 5% noise graph, run
+```bash
+python example_matching_PPI.py --noise 5
+```
+
+For MIMIC graph matching task, run
+```bash
+python example_matching_MIMIC.py
+```
+#### Protein structure alignment
+
+Run
+
+```bash
+python example_protein_alignment.py
+```
+
 For all paramters in Joint MDS please refer to `joint_mds.py`.
-
-The folder `examples` contains scripts to demonstrate the use of Joint MDS for 
-different tasks, including unsupervised heterogeneous domain adaptation, 
-graph matching, protein structure alignment.
-
-## Citation
-If you find this repository useful in your research, 
-please consider citing the following paper:
 
 
 ## Contact
