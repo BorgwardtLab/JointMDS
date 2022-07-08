@@ -26,6 +26,14 @@ export $PYTHONPATH=$PWD
 ## Citation
 Please use the following to cite our work:
 
+```bibtex
+@inproceedings{Chen2022UnsupervisedMA,
+  title={Unsupervised Manifold Alignment with Joint Multidimensional Scaling},
+  author={Dexiong Chen and Bowen Fan and Carlos G. Oliver and Karsten M. Borgwardt},
+  year={2022}
+}
+```
+
 
 ## Usage
 
