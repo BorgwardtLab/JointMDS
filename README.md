@@ -1,5 +1,10 @@
 # Joint Multidimensional Scaling
- 
+
+The repository implements the Joint Multidimensional Scaling (Joint MDS) described in the following paper:
+
+>Dexiong Chen, Bowen Fan, Carlos Oliver, Karsten Borgwardt.
+[Unsupervised Manifold Alignment with Joint Multidimensional Scaling][1]. Preprint 2022.
+
 Joint MDS is a an approach for unsupervised manifold alignment, which maps datasets from two different domains without any known correspondences between data instances across the datasets, to a common low-dimensional Euclidean space. Joint MDS integrates Multidimensional Scaling (MDS) and Wasserstein Procrustes analysis into a joint optimization problem to simultaneously generate isometric embeddings of data and learn correspondences between instances from two different datasets, while only requiring intra-dataset pairwise dissimilarities as input.
 
 ![Overview figure](JointMDS.png)
@@ -27,10 +32,13 @@ export $PYTHONPATH=$PWD
 Please use the following to cite our work:
 
 ```bibtex
-@inproceedings{Chen2022UnsupervisedMA,
-  title={Unsupervised Manifold Alignment with Joint Multidimensional Scaling},
-  author={Dexiong Chen and Bowen Fan and Carlos G. Oliver and Karsten M. Borgwardt},
-  year={2022}
+@article{chen2022jointmds,
+  url = {https://arxiv.org/abs/2207.02968},
+  author = {Chen, Dexiong and Fan, Bowen and Oliver, Carlos and Borgwardt, Karsten},
+  title = {Unsupervised Manifold Alignment with Joint Multidimensional Scaling},
+  journal={arXiv preprint arXiv:2207.02968}
+  publisher = {arXiv},
+  year = {2022},
 }
 ```
 
@@ -112,6 +120,4 @@ python example_protein_alignment.py
 For all paramters in Joint MDS please refer to `joint_mds.py`.
 
 
-## Contact
-[dexiong.chen@bsse.ethz.ch](mailto:dexiong.chen@bsse.ethz.ch) or 
-[bowen.fan@bsse.ethz.ch](mailto:bowen.fan@bsse.ethz.ch)
+[1]: https://arxiv.org/abs/2207.02968
