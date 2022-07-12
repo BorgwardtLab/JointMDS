@@ -36,7 +36,7 @@ Please use the following to cite our work:
   url = {https://arxiv.org/abs/2207.02968},
   author = {Chen, Dexiong and Fan, Bowen and Oliver, Carlos and Borgwardt, Karsten},
   title = {Unsupervised Manifold Alignment with Joint Multidimensional Scaling},
-  journal={arXiv preprint arXiv:2207.02968}
+  journal={arXiv preprint arXiv:2207.02968},
   publisher = {arXiv},
   year = {2022},
 }
