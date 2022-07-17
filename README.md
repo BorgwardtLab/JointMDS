@@ -121,3 +121,7 @@ For all paramters in Joint MDS please refer to `joint_mds.py`.
 
 
 [1]: https://arxiv.org/abs/2207.02968
+
+## Funding
+
+This project has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie grant agreement No 813533 (K.B.).
