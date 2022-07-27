@@ -37,13 +37,15 @@ def _smacof_single(
         if weights is None:
             stress = ((dis.ravel() - disparities.ravel()) ** 2).sum() / 2
         else:
-            stress = (weights.ravel() * (dis.ravel() - disparities.ravel()) ** 2).sum() / 2
+            stress = (
+                weights.ravel() * (dis.ravel() - disparities.ravel()) ** 2
+            ).sum() / 2
 
         # Update X using the Guttman transform
         zero_idx = dis == 0
         dis[zero_idx] = 1e-5
         ratio = disparities / dis
-        ratio[zero_idx] = 0.
+        ratio[zero_idx] = 0.0
         if weights is not None:
             ratio *= weights
         B = -ratio
@@ -54,9 +56,9 @@ def _smacof_single(
         else:
             X = torch.mm(Vplus, torch.mm(B, X))
 
-        dis = torch.sqrt((X ** 2).sum(dim=1)).sum()
+        dis = torch.sqrt((X**2).sum(dim=1)).sum()
         # if verbose >= 2:
-            # print("it: %d, stress %s" % (it, stress))
+        # print("it: %d, stress %s" % (it, stress))
         if old_stress is not None:
             if (old_stress - stress / dis) < eps:
                 break

@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append("../")
 from itertools import combinations
 from scipy.sparse.csgraph import dijkstra
 from joint_mds import JointMDS

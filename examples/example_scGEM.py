@@ -1,8 +1,12 @@
+import sys
+
+sys.path.append("../")
 import os
 import torch
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
+
 from sklearn.preprocessing import normalize
 from joint_mds import JointMDS
 import utils.scores as scores

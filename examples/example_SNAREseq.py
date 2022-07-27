@@ -1,12 +1,17 @@
+import sys
+
+sys.path.append("../")
 import os
 import torch
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
+
 from sklearn.preprocessing import normalize
 from joint_mds import JointMDS
 import utils.scores as scores
 from utils.utils import plot_embedding, geodesic_dist
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -14,7 +19,9 @@ def main():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
-    parser.add_argument("--outdir", type=str, default="../output", help="output directory")
+    parser.add_argument(
+        "--outdir", type=str, default="../output", help="output directory"
+    )
     parser.add_argument(
         "--components", type=int, default=2, help="number of components"
     )

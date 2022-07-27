@@ -1,7 +1,11 @@
+import sys
+
+sys.path.append("../")
 import os
 import torch
 import argparse
 import numpy as np
+
 from joint_mds import JointMDS
 from scipy.spatial.distance import pdist
 

@@ -11,50 +11,50 @@ from sklearn.metrics.pairwise import euclidean_distances
 class JointMDS:
 
     """Joint multidimensional scaling.
-        Parameters
-        ----------
-        n_components : int, default=2
-            Number of dimensions of the mutual subspace.
-        alpha : float, default=1.0
-            matching penalization term.
-        max_iter : int, default=300
-            Maximum number of iterations of the joint MDS algorithm.
-        eps : float, default=0.01
-            Entropic regularization term in Wasserstein Procrustes.
-        tol : float, defalut=1e-3
-            Stop threshold on error (>0).
-        min_eps: float, default=0.001
-            Minimal eps allowed after annealing.
-        eps_annealing: bool, default=True
-            Whether to apply annealing on eps.
-        alpha_annealing: bool, default=True
-            Whether to apply annealing on alpha.
-        gw_init: bool, default=False
-            Whether to use Gromov Wasserstein for initialization.
-        return_stress: bool, default=False
-            Whether to return the final value of the stress.
-        dissimilarity : {'euclidean', 'precomputed'}, default='euclidean'
-            Dissimilarity measure to use:
-            - 'euclidean':
-                Pairwise Euclidean distances between points in the dataset.
-            - 'precomputed':
-                Pre-computed dissimilarities are passed directly to ``fit`` and
-                ``fit_transform``.
+    Parameters
+    ----------
+    n_components : int, default=2
+        Number of dimensions of the mutual subspace.
+    alpha : float, default=1.0
+        matching penalization term.
+    max_iter : int, default=300
+        Maximum number of iterations of the joint MDS algorithm.
+    eps : float, default=0.01
+        Entropic regularization term in Wasserstein Procrustes.
+    tol : float, defalut=1e-3
+        Stop threshold on error (>0).
+    min_eps: float, default=0.001
+        Minimal eps allowed after annealing.
+    eps_annealing: bool, default=True
+        Whether to apply annealing on eps.
+    alpha_annealing: bool, default=True
+        Whether to apply annealing on alpha.
+    gw_init: bool, default=False
+        Whether to use Gromov Wasserstein for initialization.
+    return_stress: bool, default=False
+        Whether to return the final value of the stress.
+    dissimilarity : {'euclidean', 'precomputed'}, default='euclidean'
+        Dissimilarity measure to use:
+        - 'euclidean':
+            Pairwise Euclidean distances between points in the dataset.
+        - 'precomputed':
+            Pre-computed dissimilarities are passed directly to ``fit`` and
+            ``fit_transform``.
 
-        Attributes
-        ----------
-        embedding_1_: array-like, shape (n_samples_1, n_components_1)
-            Low dimensional representation of the input dataset 1 in the mutual subspace.
+    Attributes
+    ----------
+    embedding_1_: array-like, shape (n_samples_1, n_components_1)
+        Low dimensional representation of the input dataset 1 in the mutual subspace.
 
-        embedding_2_: array-like, shape (n_samples_2, n_components_2)
-            Low dimensional representation of the input dataset s in the mutual subspace.
+    embedding_2_: array-like, shape (n_samples_2, n_components_2)
+        Low dimensional representation of the input dataset s in the mutual subspace.
 
-        coupling_: array-like, shape (n_samples_1, n_samples_2)
-            Sample-wise coupling matrix between the two input datasets.
+    coupling_: array-like, shape (n_samples_1, n_samples_2)
+        Sample-wise coupling matrix between the two input datasets.
 
-        stress_: float
-            Final value of the stress.
-        """
+    stress_: float
+        Final value of the stress.
+    """
 
     def __init__(
         self,

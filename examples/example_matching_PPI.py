@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append("../")
 import torch
 import pandas as pd
 import numpy as np
@@ -77,7 +80,7 @@ def compute_shortest_path(adj):
 
 
 def get_quadratic_inverse_weight(shortest_path):
-    w = 1.0 / shortest_path ** 4
+    w = 1.0 / shortest_path**4
     w[np.isinf(w)] = 0.0
     w /= w.sum()
     return w
@@ -134,7 +137,7 @@ def main():
         eps_annealing=params["eps_annealing"],
         alpha_annealing=params["alpha_annealing"],
         gw_init=params["gw_init"],
-        dissimilarity="precomputed"
+        dissimilarity="precomputed",
     )
 
     Z1, Z2, P = JMDS.fit_transform(

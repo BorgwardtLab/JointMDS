@@ -2,7 +2,17 @@ import math
 import torch
 
 
-def sinkhorn(C, a=None, b=None, eps=1.0, v=None, return_v=False, max_iter=10, beta=0.01, max_inner_iter=1):
+def sinkhorn(
+    C,
+    a=None,
+    b=None,
+    eps=1.0,
+    v=None,
+    return_v=False,
+    max_iter=10,
+    beta=0.01,
+    max_inner_iter=1,
+):
     m, n = C.shape
     if v is None:
         v = C.new_zeros((m,))
@@ -15,7 +25,7 @@ def sinkhorn(C, a=None, b=None, eps=1.0, v=None, return_v=False, max_iter=10, be
     else:
         b = torch.log(b)
 
-    if eps == 0.:
+    if eps == 0.0:
         K = -C / beta
 
         T = torch.zeros_like(K)
@@ -45,8 +55,8 @@ def inv_ot(X1, X2, a=None, b=None, eps=0.0, max_iter=10, tol=1e-05):
 
     O = torch.eye(d1).to(X1)
 
-    X1_norm2 = (X1 ** 2).sum(dim=-1, keepdim=True)
-    X2_norm2 = (X2 ** 2).sum(dim=-1, keepdim=True)
+    X1_norm2 = (X1**2).sum(dim=-1, keepdim=True)
+    X2_norm2 = (X2**2).sum(dim=-1, keepdim=True)
     norms2 = X1_norm2 + X2_norm2.T
 
     P_old = X1.new_zeros((m, n))
@@ -57,7 +67,7 @@ def inv_ot(X1, X2, a=None, b=None, eps=0.0, max_iter=10, tol=1e-05):
     v_ot = None
 
     for i in range(max_iter):
-        dot = torch.mm(X1.mm(O), X2.T) # m x n
+        dot = torch.mm(X1.mm(O), X2.T)  # m x n
         dist = norms2 - 2 * dot
         P, v_ot = sinkhorn(dist, a=a, b=b, v=v_ot, return_v=True, eps=eps, max_iter=5)
 
@@ -77,10 +87,10 @@ def inv_ot(X1, X2, a=None, b=None, eps=0.0, max_iter=10, tol=1e-05):
 ### Gromov-Wasserstein
 def init_matrix(C1, C2, p, q):
     def f1(a):
-        return a ** 2
+        return a**2
 
     def f2(b):
-        return b ** 2
+        return b**2
 
     def h1(a):
         return a
@@ -88,13 +98,9 @@ def init_matrix(C1, C2, p, q):
     def h2(b):
         return 2 * b
 
-    constC1 = torch.mm(
-        torch.mm(f1(C1), p.view(-1, 1)),
-        torch.ones_like(q).view(1, -1)
-    )
+    constC1 = torch.mm(torch.mm(f1(C1), p.view(-1, 1)), torch.ones_like(q).view(1, -1))
     constC2 = torch.mm(
-        torch.ones_like(p).view(-1, 1),
-        torch.mm(q.view(1, -1), f2(C2).T)
+        torch.ones_like(p).view(-1, 1), torch.mm(q.view(1, -1), f2(C2).T)
     )
     constC = constC1 + constC2
     hC1 = h1(C1)
@@ -102,13 +108,16 @@ def init_matrix(C1, C2, p, q):
 
     return constC, hC1, hC2
 
+
 def gwggrad(constC, hC1, hC2, T):
-    A = - torch.mm(torch.mm(hC1, T), hC2.T)
+    A = -torch.mm(torch.mm(hC1, T), hC2.T)
     tens = constC + A
     return 2 * tens
 
-def gromov_wasserstein(C1, C2, p=None, q=None, eps=0.1,
-                       max_iter=100, tol=1e-06, max_sinkhorn_iter=10):
+
+def gromov_wasserstein(
+    C1, C2, p=None, q=None, eps=0.1, max_iter=100, tol=1e-06, max_sinkhorn_iter=10
+):
     m, n = C1.shape[0], C2.shape[0]
     if p is None:
         p = C1.new_ones((m,)) / m
@@ -119,9 +128,9 @@ def gromov_wasserstein(C1, C2, p=None, q=None, eps=0.1,
     constC, hC1, hC2 = init_matrix(C1, C2, p, q)
 
     cpt = 0
-    err = 1.
+    err = 1.0
 
-    while (err > tol and cpt < max_iter):
+    while err > tol and cpt < max_iter:
         T_old = T
 
         # compute the gradient

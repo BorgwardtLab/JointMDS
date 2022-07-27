@@ -1,4 +1,8 @@
+import sys
+
+sys.path.append("../")
 import os
+
 import torch
 import argparse
 import numpy as np
@@ -40,7 +44,9 @@ def main():
         choices=["s1", "s2", "s3"],
         help="which dataset?",
     )
-    parser.add_argument("--outdir", type=str, default="../output", help="output directory")
+    parser.add_argument(
+        "--outdir", type=str, default="../output", help="output directory"
+    )
     parser.add_argument(
         "--components", type=int, default=2, help="number of components"
     )

@@ -5,8 +5,8 @@ from sklearn.neighbors import kneighbors_graph
 import matplotlib.pyplot as plt
 
 
-def geodesic_dist(X, k=10, metric='minkowski', mode='distance'):
-    if mode == 'connectivity':
+def geodesic_dist(X, k=10, metric="minkowski", mode="distance"):
+    if mode == "connectivity":
         graph = kneighbors_graph(X, k, mode=mode, metric=metric, include_self=True)
     else:
         graph = kneighbors_graph(X, k, mode=mode, metric=metric)
@@ -23,7 +23,8 @@ def geodesic_dist(X, k=10, metric='minkowski', mode='distance'):
 
     return dist
 
-def plot_embedding(X, y, ax, title=None, fontsize=10, cmap=plt.get_cmap('Set1').colors):
+
+def plot_embedding(X, y, ax, title=None, fontsize=10, cmap=plt.get_cmap("Set1").colors):
     # set colors
     # cmap = plt.get_cmap('Set1').colors
     colors = np.asarray([cmap[int(yi)] for yi in y])
@@ -32,15 +33,13 @@ def plot_embedding(X, y, ax, title=None, fontsize=10, cmap=plt.get_cmap('Set1').
     uni_labels = np.unique(y)
 
     for i in range(uni_labels.shape[0]):
-        ind = np.where(y==uni_labels[i])[0]
-        ax.scatter(
-            X[ind,0], X[ind,1], s=16, c=colors[ind],
-            label=uni_labels[i])
+        ind = np.where(y == uni_labels[i])[0]
+        ax.scatter(X[ind, 0], X[ind, 1], s=16, c=colors[ind], label=uni_labels[i])
 
     # set title.
     if not title is None:
         ax.set_title(title, fontsize=fontsize)
-    
+
     # remove ticks.
     ax.set_xticks([])
     ax.set_yticks([])
