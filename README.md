@@ -35,7 +35,8 @@ Please use the following to cite our work:
 @inproceedings{chenunsupervised,
   title={Unsupervised Manifold Alignment with Joint Multidimensional Scaling},
   author={Chen, Dexiong and Fan, Bowen and Oliver, Carlos and Borgwardt, Karsten},
-  booktitle={International Conference on Learning Representations}
+  booktitle={International Conference on Learning Representations},
+  year={2023}
 }
 ```
 
@@ -52,7 +53,7 @@ import numpy as np
 D1 = np.random.rand(128, 10)
 D2 = np.random.rand(64, 20) 
 
-JMDS = JointMDS(n_components=2, dissimilarity="eculidean")
+JMDS = JointMDS(n_components=2, dissimilarity="euclidean")
 Z1, Z2, P = JMDS.fit_transform(D1, D2)
 
 print(Z1.shape) # (128, 2)
