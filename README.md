@@ -7,7 +7,7 @@ The repository implements the Joint Multidimensional Scaling (Joint MDS) describ
 
 Joint MDS is a an approach for unsupervised manifold alignment, which maps datasets from two different domains without any known correspondences between data instances across the datasets, to a common low-dimensional Euclidean space. Joint MDS integrates Multidimensional Scaling (MDS) and Wasserstein Procrustes analysis into a joint optimization problem to simultaneously generate isometric embeddings of data and learn correspondences between instances from two different datasets, while only requiring intra-dataset pairwise dissimilarities as input.
 
-![Overview figure](JointMDS.png)
+![Overview figure](JMDS.png)
 
 ## Installation
 
